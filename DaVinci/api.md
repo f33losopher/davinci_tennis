@@ -1,4 +1,6 @@
-# Resolve
+# Davinci Resolve 18.1.4
+## Resolve
+
     DeleteLayoutPreset
     ExportLayoutPreset
     Fusion
@@ -17,7 +19,9 @@
     SetHighPriority
     UpdateLayoutPreset
 
-# Project Manager
+## Project Manager
+
+    ArchiveProject
     CloseProject
     CreateFolder
     CreateProject
@@ -43,7 +47,8 @@
     SaveProject
     SetCurrentDatabase
 
-# Project
+## Project
+
     AddRenderJob
     DeleteAllRenderJobs
     DeleteRenderJob
@@ -67,6 +72,8 @@
     GetTimelineByIndex
     GetTimelineCount
     GetTimelineFromUniqueId
+    GetUniqueId
+    InsertAudioToCurrentTrackAtPlayhead
     IsRenderingInProgress
     LoadRenderPreset
     Print
@@ -82,7 +89,8 @@
     StartRendering
     StopRendering
 
-# Media Pool
+## Media Pool
+
     AddSubFolder
     AppendToTimeline
     CreateEmptyTimeline
@@ -96,16 +104,19 @@
     GetCurrentFolder
     GetRootFolder
     GetTimelineMatteList
+    GetUniqueId
     ImportMedia
     ImportTimelineFromFile
     MoveClips
     MoveFolders
     Print
+    RefreshFolders
     RelinkClips
     SetCurrentFolder
     UnlinkClips
 
-# Timeline
+## Timeline
+
     AddMarker
     ApplyGradeFromDRX
     CreateCompoundClip
@@ -127,11 +138,14 @@
     GetName
     GetSetting
     GetStartFrame
+    GetStartTimecode
     GetTrackCount
     GetTrackName
+    GetUniqueId
     GrabAllStills
     GrabStill
     ImportIntoTimeline
+    InsertFusionCompositionIntoTimeline
     InsertFusionGeneratorIntoTimeline
     InsertFusionTitleIntoTimeline
     InsertGeneratorIntoTimeline
@@ -141,68 +155,11 @@
     SetCurrentTimecode
     SetName
     SetSetting
+    SetStartTimecode
     SetTrackName
     UpdateMarkerCustomData
 
-# Timeline Item
-    AddFlag
-    AddFusionComp
-    AddMarker
-    AddTake
-    AddVersion
-    ClearClipColor
-    ClearFlags
-    CopyGrades
-    DeleteFusionCompByName
-    DeleteMarkerAtFrame
-    DeleteMarkerByCustomData
-    DeleteMarkersByColor
-    DeleteTakeByIndex
-    DeleteVersionByName
-    ExportFusionComp
-    FinalizeTake
-    GetClipColor
-    GetDuration
-    GetEnd
-    GetFlagList
-    GetFlags
-    GetFusionCompByIndex
-    GetFusionCompByName
-    GetFusionCompCount
-    GetFusionCompNameList
-    GetFusionCompNames
-    GetLUT
-    GetLeftOffset
-    GetMarkerByCustomData
-    GetMarkerCustomData
-    GetMarkers
-    GetMediaPoolItem
-    GetName
-    GetProperty
-    GetRightOffset
-    GetSelectedTakeIndex
-    GetStart
-    GetStereoConvergenceValues
-    GetStereoLeftFloatingWindowParams
-    GetStereoRightFloatingWindowParams
-    GetTakeByIndex
-    GetTakesCount
-    GetVersionNameList
-    GetVersionNames
-    ImportFusionComp
-    LoadFusionCompByName
-    LoadVersionByName
-    Print
-    RenameFusionCompByName
-    RenameVersionByName
-    SelectTakeByIndex
-    SetCDL
-    SetClipColor
-    SetLUT
-    SetProperty
-    UpdateMarkerCustomData
-
-# Current Video Item
+## Timeline Item
 
     AddFlag
     AddFusionComp
@@ -246,6 +203,7 @@
     GetStereoRightFloatingWindowParams
     GetTakeByIndex
     GetTakesCount
+    GetUniqueId
     GetVersionNameList
     GetVersionNames
     ImportFusionComp
@@ -260,4 +218,3 @@
     SetLUT
     SetProperty
     UpdateMarkerCustomData
-
