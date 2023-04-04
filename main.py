@@ -1,7 +1,8 @@
 from DaVinci.python_get_resolve import GetResolve
-from timecode import Timecode
 from ProcessVideos.process_timeline import ProcessTimeline
+from timecode import Timecode
 
+# This works only if launched from within DaVinci Resolve
 resolve = app.GetResolve()
 
 projectManager = resolve.GetProjectManager()
@@ -9,7 +10,8 @@ project = projectManager.GetCurrentProject()
 mediaPool = project.GetMediaPool()
 rootFolder = mediaPool.GetRootFolder()
 
-# Need to create a map of {clip name, clip object}
+# Map clip name to the clip object to create subclips
+# {clip name, clip object}
 clips = dict(map(lambda x: (x.GetName(), x), rootFolder.GetClipList()))
 
 subclip_list = ProcessTimeline(project.GetCurrentTimeline(), clips)

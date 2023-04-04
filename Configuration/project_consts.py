@@ -11,6 +11,7 @@ CONFIG = {
     ROOT_MEDIA_FOLDER : "C:\\Users\\fluuc\\Videos\\2022-08-10-Phim"
 
 }
+
 BASE_SCOREBOARD = CONFIG[BASE_DAVINCI_PATH] + "ScoreBoard.jpg"
 DRAFT           = CONFIG[BASE_DAVINCI_PATH] + "fonts\\drafting-mono\\DraftingMono-SemiBold.ttf"
 ERBOS_DRACO     = CONFIG[BASE_DAVINCI_PATH] + "fonts\\erbos-draco-monospaced-nbp-font\\ErbosDraco1StOpenNbpRegular-l5wX.ttf"
@@ -20,22 +21,25 @@ SELF_DESTRUCT   = CONFIG[BASE_DAVINCI_PATH] + "fonts\\self-destruct-button-bb-fo
 FPS = 29.970
 AUDIO_FPS = 48000
 
+MATCH = 'match'
+GAME = 'game'
 PLAYER1 = 'Player1'
 PLAYER2 = 'Player2'
+
+# Update per match
 PLAYERS = {
     PLAYER1: 'Felix ',
     PLAYER2: 'Phim  '
 }
 
-# To initialize a score before the video starts
-# Comment out if want to start from 0-0
-#init_score = {
-#    'match': {
-#        'Player1': [4,0],
-#        'Player2': [6,0]
-#    },
-#    'game': {
-#        'Player1': 0,
-#        'Player2': 0
-#    }
-#}
+# Initialize the score before video starts
+init_score = {
+   MATCH: {
+       PLAYER1: [0],
+       PLAYER2: [0]
+   },
+   GAME: {
+       PLAYER1: 0,
+       PLAYER2: 0
+   }
+}
