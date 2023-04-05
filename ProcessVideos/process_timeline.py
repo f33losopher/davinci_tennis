@@ -1,17 +1,21 @@
 #!/usr/bin/env python
 
+from Score.score_factory import createTennisScore
+from Configuration.project_consts import PLAYER1, PLAYER2
+from ProcessVideos.update_scoreboard import UpdateScoreboard
 import sys
 import json
 
 # Takes the original timeline with markers, creates the subclip info items
 # and creates a new timeline of the new clips
 
-# Use markers trim unwanted video clips
-START_PT = 'Blue'
-END_PLAYER1_PT = 'Cyan'
-END_PLAYER2_PT = 'Green'
+# Marker colors of end frame to determine who won the point
+PLAYER1_PT = 'Cyan'
 
 DEBUG_FLAG = False
+
+score = createTennisScore()
+update_scoreboard = UpdateScoreboard()
 
 def debug_print(*args, **kwargs):
     if DEBUG_FLAG:
@@ -20,6 +24,9 @@ def debug_print(*args, **kwargs):
 def ProcessTimeline(timeline, clips):
     # This holds subclips across all clips in the timeline
     subclip_list = []
+
+    # Create the scoreboard at the beginning of the match
+    update_scoreboard.update_scoreboard(score)
 
     timelineItems = timeline.GetItemListInTrack('video', 1)
     for timelineItem in timelineItems:
@@ -32,24 +39,34 @@ def ProcessTimeline(timeline, clips):
         debug_print("Sorted and filtered frames: ")
         debug_print(sorted_frames)
 
-        frm_start = 0
-        frm_end = 0
+        frame_start = 0
+        frame_end = 0
         
         # At this point, assume sorted_frames is a pair of either
         # {BLUE, CYAN} or {BLUE, GREEN}
         for i in range(0, len(sorted_frames), 2):
-            frm_start = sorted_frames[i]
-            frm_end = sorted_frames[i+1] if i < len(sorted_frames)-1 else None
+            frame_start = sorted_frames[i]
+            frame_end = sorted_frames[i+1] if i < len(sorted_frames)-1 else None
 
-            if frm_end != None:
+            # TODO Need to handle case where a point crosses timelineItem boundary
+            if frame_end != None:
                 subClip = {
                     "mediaPoolItem": clips[timelineItem.GetName()],
-                    "startFrame": frm_start,
-                    "endFrame": frm_end
+                    "startFrame": frame_start,
+                    "endFrame": frame_end
                 }
 
                 subclip_list.append(subClip);
-    
+
+                # Update the score based on marker {CYAN, GREEN}
+                if markers[frame_end]['color'] == PLAYER1_PT:
+                    score.update_game_score(PLAYER1)
+                else:
+                    score.update_game_score(PLAYER2)
+
+                # Create the scoreboard jpeg for this subclip
+                update_scoreboard.update_scoreboard(score)
+
     return subclip_list
 
 # The initial set of markers can have consecutive BLUE markers.

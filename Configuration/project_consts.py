@@ -8,7 +8,7 @@ GAME_TYPES = ("Standard", "Tiebreak")
 CONFIG = {
     BASE_DAVINCI_PATH : "C:\\Users\\fluuc\\AppData\\Roaming\\Blackmagic Design\\DaVinci Resolve\\Support\\Fusion\\Scripts\\Comp\\",
     GAME_TYPE : 'Standard',
-    ROOT_MEDIA_FOLDER : "C:\\Users\\fluuc\\Videos\\2022-08-10-Phim"
+    ROOT_MEDIA_FOLDER : "C:\\Users\\fluuc\\Videos\\2023-01-02-Doubles"
 
 }
 
@@ -28,8 +28,8 @@ PLAYER2 = 'Player2'
 
 # Update per match
 PLAYERS = {
-    PLAYER1: 'Felix ',
-    PLAYER2: 'Phim  '
+    PLAYER1: 'KP ',
+    PLAYER2: 'KH '
 }
 
 # Initialize the score before video starts
