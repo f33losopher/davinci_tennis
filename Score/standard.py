@@ -9,7 +9,7 @@ class StandardScore(AbsScore):
         # Points conversion dictionary
         self.points_conversion = {0: "0", 1: "15", 2: "30", 3: "40"}
 
-    def get_game_score(self, player):
+    def get_game_score(self, player) -> str:
         rtn = ""
 
         other_player = PLAYER1

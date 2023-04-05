@@ -21,10 +21,11 @@ class AbsScore:
             self.match_score[GAME][PLAYER1] = init_score[GAME][PLAYER1]
             self.match_score[GAME][PLAYER2] = init_score[GAME][PLAYER2]
     
-    def get_full_match_score(self):
+    def get_full_match_score(self) -> any:
         return self.match_score
 
-    def get_match_score(self, player):
+    # Define a method and show it returns a string
+    def get_match_score(self, player) -> str:
         score = ""
         for s in self.match_score[MATCH][player]:
             score = score + str(s) + " "
@@ -32,7 +33,7 @@ class AbsScore:
         return score.rstrip()
     
     # Let each scoring class define how to return the score
-    def get_game_score(self, player):
+    def get_game_score(self, player) -> str:
         pass
 
     # Update game score after each point
