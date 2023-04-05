@@ -13,7 +13,7 @@ import json
 PLAYER1_PT = 'Cyan'
 PLAYER2_PT = 'Green'
 
-DEBUG_FLAG = False
+DEBUG_FLAG = True
 
 score = createTennisScore()
 update_scoreboard = UpdateScoreboard()
@@ -85,7 +85,7 @@ def filter_markers(markers):
         frame1 = markers[sorted_frames[i]]['color']
         frame2 = markers[sorted_frames[i+1]]['color']
         if frame1 == frame2:
-            sorted_frames.pop(i+1)
+            sorted_frames.pop(i)
         else:
             i += 1
 
