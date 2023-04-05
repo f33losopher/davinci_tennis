@@ -24,9 +24,7 @@ class StandardScore(AbsScore):
         if (match_score[player] == 6 and match_score[other_player] == 6):
             # Tiebreak situation, just return the game score
             rtn = game_score[player]
-        elif requested_score in self.points_conversion:
-            return self.points_conversion[requested_score]
-        else:
+        elif game_score[player] >= 3 and game_score[other_player] >= 3:
             # This is an Ad situation
             other_score = game_score[other_player]
 
@@ -37,6 +35,8 @@ class StandardScore(AbsScore):
                     rtn = "Ad"
                 elif requested_score - other_score == -1:
                     rtn = "-"
+        elif requested_score in self.points_conversion:
+            return self.points_conversion[requested_score]
         
         return rtn
 
