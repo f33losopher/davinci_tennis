@@ -11,6 +11,7 @@ import json
 
 # Marker colors of end frame to determine who won the point
 PLAYER1_PT = 'Cyan'
+PLAYER2_PT = 'Green'
 
 DEBUG_FLAG = False
 
@@ -61,8 +62,11 @@ def ProcessTimeline(timeline, clips):
                 # Update the score based on marker {CYAN, GREEN}
                 if markers[frame_end]['color'] == PLAYER1_PT:
                     score.update_game_score(PLAYER1)
-                else:
+                elif markers[frame_end]['color'] == PLAYER2_PT:
                     score.update_game_score(PLAYER2)
+                else:
+                    # Must be hold over from the yellow markers
+                    pass
 
                 # Create the scoreboard jpeg for this subclip
                 update_scoreboard.update_scoreboard(score)
