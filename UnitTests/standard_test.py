@@ -45,8 +45,8 @@ def test_basic_increment_game_score():
     score.update_game_score(PLAYER1)
     assert "0" == score.get_game_score(PLAYER1)
     assert "0" == score.get_game_score(PLAYER2)
-    assert "1" == score.get_match_score(PLAYER1).rstrip()
-    assert "0" == score.get_match_score(PLAYER2).rstrip()
+    assert "1" == score.get_match_score(PLAYER1)
+    assert "0" == score.get_match_score(PLAYER2)
 
     # Increment PLAYER2 scores
     score.update_game_score(PLAYER2)
@@ -64,8 +64,8 @@ def test_basic_increment_game_score():
     score.update_game_score(PLAYER2)
     assert "0" == score.get_game_score(PLAYER1)
     assert "0" == score.get_game_score(PLAYER2)
-    assert "1" == score.get_match_score(PLAYER1).rstrip()
-    assert "1" == score.get_match_score(PLAYER2).rstrip()
+    assert "1" == score.get_match_score(PLAYER1)
+    assert "1" == score.get_match_score(PLAYER2)
 
 def test_complete_normal_set():
     score = create_score()
@@ -77,14 +77,14 @@ def test_complete_normal_set():
     # Set the score for PLAYER1 to be Match {5, 0} and Game {40, 0}
     match_score[PLAYER1] = [5]
     game_score[PLAYER1] = 3
-    assert "5" == score.get_match_score(PLAYER1).rstrip()
+    assert "5" == score.get_match_score(PLAYER1)
     assert "40" == score.get_game_score(PLAYER1)
 
     score.update_game_score(PLAYER1)
     assert "0" == score.get_game_score(PLAYER1)
     assert "0" == score.get_game_score(PLAYER2)
-    assert "6 0" == score.get_match_score(PLAYER1).rstrip()
-    assert "0 0" == score.get_match_score(PLAYER2).rstrip()
+    assert "6 0" == score.get_match_score(PLAYER1)
+    assert "0 0" == score.get_match_score(PLAYER2)
 
 def test_ad_scenarios():
     score = create_score()
@@ -120,8 +120,8 @@ def test_ad_scenarios():
     score.update_game_score(PLAYER1)
     assert "0" == score.get_game_score(PLAYER1)
     assert "0" == score.get_game_score(PLAYER2)
-    assert "1" == score.get_match_score(PLAYER1).rstrip()
-    assert "0" == score.get_match_score(PLAYER2).rstrip()
+    assert "1" == score.get_match_score(PLAYER1)
+    assert "0" == score.get_match_score(PLAYER2)
 
     # Set the game score at deuce and repeat for PLAYER2
     game_score = score.get_full_match_score()[GAME]
@@ -153,8 +153,8 @@ def test_ad_scenarios():
     score.update_game_score(PLAYER2)
     assert "0" == score.get_game_score(PLAYER1)
     assert "0" == score.get_game_score(PLAYER2)
-    assert "1" == score.get_match_score(PLAYER1).rstrip()
-    assert "1" == score.get_match_score(PLAYER2).rstrip()
+    assert "1" == score.get_match_score(PLAYER1)
+    assert "1" == score.get_match_score(PLAYER2)
 
 def test_5_7_scenario():
     score = create_score()
@@ -167,8 +167,8 @@ def test_5_7_scenario():
 
     score.update_game_score(PLAYER1)
 
-    assert "6" == score.get_match_score(PLAYER1).rstrip()
-    assert "5" == score.get_match_score(PLAYER2).rstrip()
+    assert "6" == score.get_match_score(PLAYER1)
+    assert "5" == score.get_match_score(PLAYER2)
     assert "0" == score.get_game_score(PLAYER1)
     assert "0" == score.get_game_score(PLAYER2)
 
@@ -177,7 +177,84 @@ def test_5_7_scenario():
     score.update_game_score(PLAYER1)
     score.update_game_score(PLAYER1)
 
-    assert "7 0" == score.get_match_score(PLAYER1).rstrip()
-    assert "5 0" == score.get_match_score(PLAYER2).rstrip()
+    assert "7 0" == score.get_match_score(PLAYER1)
+    assert "5 0" == score.get_match_score(PLAYER2)
+    assert "0" == score.get_game_score(PLAYER1)
+    assert "0" == score.get_game_score(PLAYER2)
+
+def test_tiebreak():
+    score = create_score()
+    assert True == isInit(score)
+
+    score.get_full_match_score()[MATCH][PLAYER1] = [5]
+    score.get_full_match_score()[MATCH][PLAYER2] = [5]
+    score.get_full_match_score()[GAME][PLAYER1] = 3
+    score.update_game_score(PLAYER1)
+
+    assert "6" == score.get_match_score(PLAYER1)
+    assert "5" == score.get_match_score(PLAYER2)
+    assert "0" == score.get_game_score(PLAYER1)
+    assert "0" == score.get_game_score(PLAYER2)
+
+    score.get_full_match_score()[GAME][PLAYER2] = 3
+    score.update_game_score(PLAYER2)
+
+    assert "6" == score.get_match_score(PLAYER1)
+    assert "6" == score.get_match_score(PLAYER2)
+    assert "0" == score.get_game_score(PLAYER1)
+    assert "0" == score.get_game_score(PLAYER2)
+
+    score.update_game_score(PLAYER1)
+    assert "1" == score.get_game_score(PLAYER1)
+    assert "0" == score.get_game_score(PLAYER2)
+    score.update_game_score(PLAYER1)
+    assert "2" == score.get_game_score(PLAYER1)
+    assert "0" == score.get_game_score(PLAYER2)
+    score.update_game_score(PLAYER1)
+    score.update_game_score(PLAYER1)
+    score.update_game_score(PLAYER1)
+    score.update_game_score(PLAYER1)
+    assert "6" == score.get_game_score(PLAYER1)
+    assert "0" == score.get_game_score(PLAYER2)
+    score.update_game_score(PLAYER1)
+    assert "7 0" == score.get_match_score(PLAYER1)
+    assert "6 0" == score.get_match_score(PLAYER2)
+    assert "0" == score.get_game_score(PLAYER1)
+    assert "0" == score.get_game_score(PLAYER2)
+
+
+def test_tiebreak_over_7_points():
+    score = create_score()
+    assert True == isInit(score)
+
+    score.get_full_match_score()[MATCH][PLAYER1] = [6]
+    score.get_full_match_score()[MATCH][PLAYER2] = [6]
+    score.get_full_match_score()[GAME][PLAYER1] = 5
+    score.get_full_match_score()[GAME][PLAYER2] = 5
+
+    score.update_game_score(PLAYER1)
+    assert "6" == score.get_game_score(PLAYER1)
+    assert "5" == score.get_game_score(PLAYER2)
+
+    score.update_game_score(PLAYER2)
+    assert "6" == score.get_game_score(PLAYER1)
+    assert "6" == score.get_game_score(PLAYER2)
+
+    score.update_game_score(PLAYER1)
+    assert "7" == score.get_game_score(PLAYER1)
+    assert "6" == score.get_game_score(PLAYER2)
+
+    score.update_game_score(PLAYER2)
+    assert "7" == score.get_game_score(PLAYER1)
+    assert "7" == score.get_game_score(PLAYER2)
+
+    score.update_game_score(PLAYER2)
+    assert "7" == score.get_game_score(PLAYER1)
+    assert "8" == score.get_game_score(PLAYER2)
+
+    score.update_game_score(PLAYER2)
+
+    assert "6 0" == score.get_match_score(PLAYER1)
+    assert "7 0" == score.get_match_score(PLAYER2)
     assert "0" == score.get_game_score(PLAYER1)
     assert "0" == score.get_game_score(PLAYER2)

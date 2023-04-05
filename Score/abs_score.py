@@ -29,7 +29,7 @@ class AbsScore:
         for s in self.match_score[MATCH][player]:
             score = score + str(s) + " "
 
-        return score
+        return score.rstrip()
     
     # Let each scoring class define how to return the score
     def get_game_score(self, player):

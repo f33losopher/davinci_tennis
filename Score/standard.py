@@ -21,9 +21,9 @@ class StandardScore(AbsScore):
 
         requested_score = game_score[player]
 
-        if (match_score[player] == 6 and match_score[other_player] == 6):
+        if (match_score[player][-1] == 6 and match_score[other_player][-1] == 6):
             # Tiebreak situation, just return the game score
-            rtn = game_score[player]
+            rtn = str(game_score[player])
         elif game_score[player] >= 3 and game_score[other_player] >= 3:
             # This is an Ad situation
             other_score = game_score[other_player]
