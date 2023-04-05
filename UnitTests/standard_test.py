@@ -155,3 +155,29 @@ def test_ad_scenarios():
     assert "0" == score.get_game_score(PLAYER2)
     assert "1" == score.get_match_score(PLAYER1).rstrip()
     assert "1" == score.get_match_score(PLAYER2).rstrip()
+
+def test_5_7_scenario():
+    score = create_score()
+    assert True == isInit(score)
+
+    score.get_full_match_score()[MATCH][PLAYER1] = [5]
+    score.get_full_match_score()[MATCH][PLAYER2] = [5]
+
+    score.get_full_match_score()[GAME][PLAYER1] = 3
+
+    score.update_game_score(PLAYER1, PLAYER2)
+
+    assert "6" == score.get_match_score(PLAYER1).rstrip()
+    assert "5" == score.get_match_score(PLAYER2).rstrip()
+    assert "0" == score.get_game_score(PLAYER1)
+    assert "0" == score.get_game_score(PLAYER2)
+
+    score.update_game_score(PLAYER1, PLAYER2)
+    score.update_game_score(PLAYER1, PLAYER2)
+    score.update_game_score(PLAYER1, PLAYER2)
+    score.update_game_score(PLAYER1, PLAYER2)
+
+    assert "7 0" == score.get_match_score(PLAYER1).rstrip()
+    assert "5 0" == score.get_match_score(PLAYER2).rstrip()
+    assert "0" == score.get_game_score(PLAYER1)
+    assert "0" == score.get_game_score(PLAYER2)
