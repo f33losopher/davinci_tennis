@@ -13,12 +13,25 @@ class UpdateScoreboard:
         clear = img.copy()
         draw = ImageDraw.Draw(clear)
     
-        draw.text((10, 5), score.get_match_score(PLAYER1), anchor="lm", font=sb_font)
-        draw.text((340, 5), score.get_game_score(PLAYER1), anchor="rm", font=sb_font)
+        draw.text((10, 18), self.get_name_and_match_score(score, PLAYER1), anchor="lm", font=sb_font)
+        draw.text((385, 18), score.get_game_score(PLAYER1), anchor="rm", font=sb_font)
     
-        draw.text((10, 40), score.get_match_score(PLAYER2), anchor="lm", font=sb_font)
-        draw.text((340, 40), score.get_game_score(PLAYER2), anchor="rm", font=sb_font)
+        draw.text((10, 53), self.get_name_and_match_score(score, PLAYER2), anchor="lm", font=sb_font)
+        draw.text((385, 53), score.get_game_score(PLAYER2), anchor="rm", font=sb_font)
     
         clear.save(CONFIG[ROOT_MEDIA_FOLDER] + '\\scoreboard_clipNo_' + str(self.clip_no) + '.jpg')
 
         self.clip_no += 1
+
+    def get_name_and_match_score(self, score:AbsScore, player:str) -> str:
+        rtn = PLAYERS[player]
+        rtn = rtn + score.get_match_score(player)
+        
+        return rtn
+    
+    def get_clip_no(self) -> int:
+        return self.clip_no
+    
+
+
+
