@@ -40,29 +40,37 @@ class StandardScore(AbsScore):
         
         return rtn
 
-    def update_game_score(self, winner, loser):
+    def update_game_score(self, player):
+        other_player = PLAYER1
+        if player == PLAYER1:
+            other_player = PLAYER2
+
         match_score = self.match_score[MATCH]
         game_score = self.match_score[GAME]
 
-        game_score[winner] += 1
+        game_score[player] += 1
 
         # Check if we are in a tiebreaker by checking the active match score
-        if match_score[winner][-1] == 6 and match_score[loser][-1] == 6:
-            if (game_score[winner] >= 7) and ((game_score[winner] - game_score[loser]) > 1):
-                self.update_match_score(winner, loser)
-                game_score[winner] = 0
-                game_score[loser] = 0
+        if match_score[player][-1] == 6 and match_score[other_player][-1] == 6:
+            if (game_score[player] >= 7) and ((game_score[player] - game_score[other_player]) > 1):
+                self.update_match_score(player)
+                game_score[player] = 0
+                game_score[other_player] = 0
         else:
-            if game_score[winner] > 3 and (game_score[winner] - game_score[loser] > 1):
-                self.update_match_score(winner, loser)
-                game_score[winner] = 0
-                game_score[loser] = 0
+            if game_score[player] > 3 and (game_score[player] - game_score[other_player] > 1):
+                self.update_match_score(player)
+                game_score[player] = 0
+                game_score[other_player] = 0
     
-    def update_match_score(self, winner, loser):
-        match_score = self.match_score[MATCH]
-        match_score[winner][-1] += 1
+    def update_match_score(self, player):
+        other_player = PLAYER1
+        if player == PLAYER1:
+            other_player = PLAYER2
 
-        if ((match_score[winner][-1] == 6) and (match_score[loser][-1] < 5)) or match_score[winner][-1] == 7:
+        match_score = self.match_score[MATCH]
+        match_score[player][-1] += 1
+
+        if ((match_score[player][-1] == 6) and (match_score[other_player][-1] < 5)) or match_score[player][-1] == 7:
             # The set is complete. Close out the set and start a new one
-            match_score[winner].append(0)
-            match_score[loser].append(0)
+            match_score[player].append(0)
+            match_score[other_player].append(0)

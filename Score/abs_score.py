@@ -36,9 +36,9 @@ class AbsScore:
         pass
 
     # Update game score after each point
-    def update_game_score(self, winner, loser):
+    def update_game_score(self, player):
         pass
 
     # Update match score depending on game type
-    def update_match_score(self, winner, loser):
+    def update_match_score(self, player):
         pass

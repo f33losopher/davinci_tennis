@@ -30,38 +30,38 @@ def test_basic_increment_game_score():
     assert True == isInit(score)
 
     # Increment PLAYER1 scores
-    score.update_game_score(PLAYER1, PLAYER2)
+    score.update_game_score(PLAYER1)
     assert "15" == score.get_game_score(PLAYER1)
     assert "0" == score.get_game_score(PLAYER2)
 
-    score.update_game_score(PLAYER1, PLAYER2)
+    score.update_game_score(PLAYER1)
     assert "30" == score.get_game_score(PLAYER1)
     assert "0" == score.get_game_score(PLAYER2)
 
-    score.update_game_score(PLAYER1, PLAYER2)
+    score.update_game_score(PLAYER1)
     assert "40" == score.get_game_score(PLAYER1)
     assert "0" == score.get_game_score(PLAYER2)
 
-    score.update_game_score(PLAYER1, PLAYER2)
+    score.update_game_score(PLAYER1)
     assert "0" == score.get_game_score(PLAYER1)
     assert "0" == score.get_game_score(PLAYER2)
     assert "1" == score.get_match_score(PLAYER1).rstrip()
     assert "0" == score.get_match_score(PLAYER2).rstrip()
 
     # Increment PLAYER2 scores
-    score.update_game_score(PLAYER2, PLAYER1)
+    score.update_game_score(PLAYER2)
     assert "15" == score.get_game_score(PLAYER2)
     assert "0" == score.get_game_score(PLAYER1)
 
-    score.update_game_score(PLAYER2, PLAYER1)
+    score.update_game_score(PLAYER2)
     assert "30" == score.get_game_score(PLAYER2)
     assert "0" == score.get_game_score(PLAYER1)
 
-    score.update_game_score(PLAYER2, PLAYER1)
+    score.update_game_score(PLAYER2)
     assert "40" == score.get_game_score(PLAYER2)
     assert "0" == score.get_game_score(PLAYER1)
 
-    score.update_game_score(PLAYER2, PLAYER1)
+    score.update_game_score(PLAYER2)
     assert "0" == score.get_game_score(PLAYER1)
     assert "0" == score.get_game_score(PLAYER2)
     assert "1" == score.get_match_score(PLAYER1).rstrip()
@@ -80,7 +80,7 @@ def test_complete_normal_set():
     assert "5" == score.get_match_score(PLAYER1).rstrip()
     assert "40" == score.get_game_score(PLAYER1)
 
-    score.update_game_score(PLAYER1, PLAYER2)
+    score.update_game_score(PLAYER1)
     assert "0" == score.get_game_score(PLAYER1)
     assert "0" == score.get_game_score(PLAYER2)
     assert "6 0" == score.get_match_score(PLAYER1).rstrip()
@@ -98,26 +98,26 @@ def test_ad_scenarios():
     assert "40" == score.get_game_score(PLAYER1)
     assert "40" == score.get_game_score(PLAYER2)
 
-    score.update_game_score(PLAYER1, PLAYER2)
+    score.update_game_score(PLAYER1)
     assert "Ad" == score.get_game_score(PLAYER1)
     assert "-" == score.get_game_score(PLAYER2)
 
-    score.update_game_score(PLAYER2, PLAYER1)
+    score.update_game_score(PLAYER2)
     assert "40" == score.get_game_score(PLAYER1)
     assert "40" == score.get_game_score(PLAYER2)
 
-    score.update_game_score(PLAYER2, PLAYER1)
+    score.update_game_score(PLAYER2)
     assert "-" == score.get_game_score(PLAYER1)
     assert "Ad" == score.get_game_score(PLAYER2)
 
-    score.update_game_score(PLAYER1, PLAYER2)
+    score.update_game_score(PLAYER1)
     assert "40" == score.get_game_score(PLAYER1)
     assert "40" == score.get_game_score(PLAYER2)
 
     # This should end the game, games scores go back to zero
     # Increment set score
-    score.update_game_score(PLAYER1, PLAYER2)
-    score.update_game_score(PLAYER1, PLAYER2)
+    score.update_game_score(PLAYER1)
+    score.update_game_score(PLAYER1)
     assert "0" == score.get_game_score(PLAYER1)
     assert "0" == score.get_game_score(PLAYER2)
     assert "1" == score.get_match_score(PLAYER1).rstrip()
@@ -131,26 +131,26 @@ def test_ad_scenarios():
     assert "40" == score.get_game_score(PLAYER1)
     assert "40" == score.get_game_score(PLAYER2)
 
-    score.update_game_score(PLAYER2, PLAYER1)
+    score.update_game_score(PLAYER2)
     assert "-" == score.get_game_score(PLAYER1)
     assert "Ad" == score.get_game_score(PLAYER2)
 
-    score.update_game_score(PLAYER1, PLAYER2)
+    score.update_game_score(PLAYER1)
     assert "40" == score.get_game_score(PLAYER1)
     assert "40" == score.get_game_score(PLAYER2)
 
-    score.update_game_score(PLAYER1, PLAYER2)
+    score.update_game_score(PLAYER1)
     assert "Ad" == score.get_game_score(PLAYER1)
     assert "-" == score.get_game_score(PLAYER2)
 
-    score.update_game_score(PLAYER2, PLAYER1)
+    score.update_game_score(PLAYER2)
     assert "40" == score.get_game_score(PLAYER1)
     assert "40" == score.get_game_score(PLAYER2)
 
     # This should end the game, games scores go back to zero
     # Increment set score
-    score.update_game_score(PLAYER2, PLAYER1)
-    score.update_game_score(PLAYER2, PLAYER1)
+    score.update_game_score(PLAYER2)
+    score.update_game_score(PLAYER2)
     assert "0" == score.get_game_score(PLAYER1)
     assert "0" == score.get_game_score(PLAYER2)
     assert "1" == score.get_match_score(PLAYER1).rstrip()
@@ -165,17 +165,17 @@ def test_5_7_scenario():
 
     score.get_full_match_score()[GAME][PLAYER1] = 3
 
-    score.update_game_score(PLAYER1, PLAYER2)
+    score.update_game_score(PLAYER1)
 
     assert "6" == score.get_match_score(PLAYER1).rstrip()
     assert "5" == score.get_match_score(PLAYER2).rstrip()
     assert "0" == score.get_game_score(PLAYER1)
     assert "0" == score.get_game_score(PLAYER2)
 
-    score.update_game_score(PLAYER1, PLAYER2)
-    score.update_game_score(PLAYER1, PLAYER2)
-    score.update_game_score(PLAYER1, PLAYER2)
-    score.update_game_score(PLAYER1, PLAYER2)
+    score.update_game_score(PLAYER1)
+    score.update_game_score(PLAYER1)
+    score.update_game_score(PLAYER1)
+    score.update_game_score(PLAYER1)
 
     assert "7 0" == score.get_match_score(PLAYER1).rstrip()
     assert "5 0" == score.get_match_score(PLAYER2).rstrip()
