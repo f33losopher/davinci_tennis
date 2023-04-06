@@ -34,3 +34,4 @@ for filename in os.listdir(jpgDir):
         print("Added: " + filename)
 
 mediaPool.ImportMedia(jpgList)
+
