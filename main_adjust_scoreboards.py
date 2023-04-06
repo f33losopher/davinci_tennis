@@ -5,6 +5,7 @@ import time
 
 # TODO
 # Manual step before running this script 
+# Create another track for video
 
 resolve = app.GetResolve()
 
@@ -27,14 +28,15 @@ for jpg in rootFolder.GetClipList():
 # Loop over each timeline item, and update the corresponding scoreboard's
 # Start TC to match up with the start of the point
 i = 0
-tl_tc = Timecode("30", "01:00:00:00")
 while i < len(tl_clip_list):
     filename = "scoreboard_clipNo_" + str(i) +  "_" + str(i) + ".jpg"
+    frame_start = tl_clip_list[i].GetStart()
     media_item = jpeg_dict[filename]
-
-    media_item.SetClipProperty("Start TC", str(tl_tc))
-
-    tl_tc.frames += tl_clip_list[i].GetDuration()
-    
+    # Timecode initialize at 30fps and a start frame
+    tc = Timecode('30', "00:00:00:00")
+    tc += frame_start
+    media_item.SetClipProperty("Start TC", str(tc))
     i += 1
+
+    print(f"Set {filename} to start at " + str(tc))
 
