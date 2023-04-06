@@ -6,7 +6,7 @@ class UpdateScoreboard:
     def __init__(self):
         self.clip_no = 0
 
-    # Updates the 
+    # Updates the scoreboard by drawing current score on BASE_SCOREBOARD
     def update_scoreboard(self, score: AbsScore):
         sb_font = ImageFont.truetype(DRAFT, 25)
         img = Image.open(BASE_SCOREBOARD)
@@ -19,7 +19,10 @@ class UpdateScoreboard:
         draw.text((10, 53), self.get_name_and_match_score(score, PLAYER2), anchor="lm", font=sb_font)
         draw.text((385, 53), score.get_game_score(PLAYER2), anchor="rm", font=sb_font)
     
-        clear.save(CONFIG[ROOT_MEDIA_FOLDER] + '\\scoreboard_clipNo_' + str(self.clip_no) + '.jpg')
+        # Use clip number twice otherwise when importing into DaVinci it'll
+        # create a single clip because the filenames are same with sequential
+        # numbering
+        clear.save(CONFIG[ROOT_MEDIA_FOLDER] + '\\scoreboard_clipNo_' + str(self.clip_no) + '_' + str(self.clip_no) + '.jpg')
 
         self.clip_no += 1
 

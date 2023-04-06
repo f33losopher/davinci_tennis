@@ -6,8 +6,6 @@ from ProcessVideos.update_scoreboard import UpdateScoreboard
 import sys
 import json
 
-# Takes the original timeline with markers, creates the subclip info items
-# and creates a new timeline of the new clips
 
 # Marker colors of end frame to determine who won the point
 PLAYER1_PT = 'Cyan'
@@ -22,6 +20,8 @@ def debug_print(*args, **kwargs):
     if DEBUG_FLAG:
         print(*args, file=sys.stdout, **kwargs)
 
+# Takes the original timeline with markers, creates the subclip info items
+# and returns an array of subclips
 def ProcessTimeline(timeline, clips):
     # This holds subclips across all clips in the timeline
     subclip_list = []
@@ -75,8 +75,7 @@ def ProcessTimeline(timeline, clips):
 
 # The initial set of markers can have consecutive BLUE markers.
 # Remove all the duplicates so we only have pairs of
-# {BLUE, CYAN} or {BLUE, GREEN} markers. This is essentially
-# each subclip
+# {BLUE, CYAN} or {BLUE, GREEN} markers. This becomes each subclip
 def filter_markers(markers):
     sorted_frames = sorted(markers.keys())
 
