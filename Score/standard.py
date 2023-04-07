@@ -1,6 +1,9 @@
 from Score.abs_score import AbsScore
 from Configuration.project_consts import *
 
+# Tradiontal Tennis scoring with deuces
+# First to 6 games wins set
+# In case of 5-5 can win by 7-5 or going to tiebreaker
 class StandardScore(AbsScore):
 
     def __init__(self): 

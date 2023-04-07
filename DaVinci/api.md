@@ -1,4 +1,5 @@
 # Davinci Resolve 18.1.4
+## This is everything I printed out with python "dir" command
 ## Resolve
 
     DeleteLayoutPreset
