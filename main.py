@@ -13,12 +13,7 @@ project = projectManager.GetCurrentProject()
 mediaPool = project.GetMediaPool()
 rootFolder = mediaPool.GetRootFolder()
 
-# Map clip name to the clip object to create subclips
-# {clip name, clip object}
-# The clip object is required for appending to timeline
-clips = dict(map(lambda x: (x.GetName(), x), rootFolder.GetClipList()))
-
-subclip_list = ProcessTimeline(project.GetCurrentTimeline(), clips)
+subclip_list = ProcessTimeline(project.GetCurrentTimeline())
 
 # Create a new timeline and add the subclips
 mediaPool.CreateEmptyTimeline("Processed Clips")

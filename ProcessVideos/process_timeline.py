@@ -29,7 +29,7 @@ def debug_print(*args, **kwargs):
 # and returns an array of subclips that includes the MediaPool Items
 # The actual MediaPoolItem is required for DaVinci to efficiently make
 # subclips
-def ProcessTimeline(timeline, clips):
+def ProcessTimeline(timeline):
     # Holds subclips across ALL clips in the timeline. Object definition
     # found on google...
     #{
@@ -67,7 +67,7 @@ def ProcessTimeline(timeline, clips):
             # TODO Need to handle case where a point crosses timelineItem boundary
             if frame_end != None:
                 subClip = {
-                    "mediaPoolItem": clips[timelineItem.GetName()],
+                    "mediaPoolItem": timelineItem.GetMediaPoolItem(),
                     "startFrame": frame_start,
                     "endFrame": frame_end
                 }
