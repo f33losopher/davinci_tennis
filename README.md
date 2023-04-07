@@ -11,7 +11,7 @@ This project takes a Timeline with markers to indicate when points start and who
 ## How to Use the program
 ### In DaVinci Resolve
 Mark the clip itself **not the Timeline**  for start/end points
- - Blue - Start of point
+ - Blue - Start of point (You can place consecutive Blue markers for faults, lets, etc... Program will pair up the closest Blue/{Cyan|Green} marker)
  - Cyan - End of point for player/team 1
  - Green - End of point for player/team 2
 
