@@ -11,6 +11,7 @@ import json
 # The colors are defined in DaVinci Resolve
 PLAYER1_PT = 'Cyan'
 PLAYER2_PT = 'Green'
+PT_START = 'Blue'
 
 DEBUG_FLAG = True
 
@@ -59,32 +60,38 @@ def ProcessTimeline(timeline):
         frame_end = 0
         
         # At this point, assume sorted_frames is a pair of either
-        # {BLUE, CYAN} or {BLUE, GREEN}
+        # {BLUE, CYAN}, {BLUE, GREEN}, or orphaned {CYAN}|{GREEN}
         for i in range(0, len(sorted_frames), 2):
             frame_start = sorted_frames[i]
             frame_end = sorted_frames[i+1] if i < len(sorted_frames)-1 else None
 
-            # TODO Need to handle case where a point crosses timelineItem boundary
-            if frame_end != None:
-                subClip = {
-                    "mediaPoolItem": timelineItem.GetMediaPoolItem(),
-                    "startFrame": frame_start,
-                    "endFrame": frame_end
-                }
+            # Start marker with no end marker, use end the of the clip as frame end
+            if markers[frame_start]['color'] == PT_START and frame_end == None:
+                frame_end = timelineItem.GetDuration()
 
-                subclip_list.append(subClip);
+            # If the first marker is CYAN or GREEN, it's a continuation clip, use beginning
+            # of clip for frame start
+            elif (markers[frame_start]['color'] == PLAYER1_PT) or (markers[frame_start]['color'] == PLAYER2_PT):
+                frame_end = frame_start
+                frame_start = 0
 
                 # Update the score based on marker {CYAN, GREEN}
-                if markers[frame_end]['color'] == PLAYER1_PT:
-                    score.update_game_score(PLAYER1)
-                elif markers[frame_end]['color'] == PLAYER2_PT:
-                    score.update_game_score(PLAYER2)
-                else:
-                    # Must be hold over from the yellow markers
-                    pass
+                update_score(frame_end, markers)
 
-                # Create the scoreboard jpeg for this subclip
-                update_scoreboard.update_scoreboard(score)
+                # Since we only use one marker, we don't wnat to skip the next marker
+                i -= 1
+            else: 
+                # Update the score based on marker {CYAN, GREEN}
+                update_score(frame_end, markers)
+
+            subClip = {
+                "mediaPoolItem": timelineItem.GetMediaPoolItem(),
+                "startFrame": frame_start,
+                "endFrame": frame_end
+            }
+
+            subclip_list.append(subClip);
+            update_scoreboard.update_scoreboard(score)
 
     return subclip_list
 
@@ -108,3 +115,12 @@ def filter_markers(markers):
             i += 1
 
     return sorted_frames
+
+def update_score(frame, markers):
+    if markers[frame]['color'] == PLAYER1_PT:
+        score.update_game_score(PLAYER1)
+    elif markers[frame]['color'] == PLAYER2_PT:
+        score.update_game_score(PLAYER2)
+    else:
+        # Must be hold over from the yellow markers
+        print("Invalid Marker color: " + markers[frame]['color'])
