@@ -51,7 +51,8 @@ while i < len(tl_clip_list):
     tc = Timecode('30', "00:00:00:00")
     tc += frame_start
     media_item.SetClipProperty("Start TC", str(tc))
+    print(f"Set {filename} to start at " + str(tc))
+
     i += 1
 
-    print(f"Set {filename} to start at " + str(tc))
 
