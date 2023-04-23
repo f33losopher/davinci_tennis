@@ -1,3 +1,5 @@
+from Score.game_types import GameTypes
+
 BASE_DAVINCI_PATH = 'BASE_DAVINCI_PATH'
 GAME_TYPE = 'GAME_TYPE'
 ROOT_MEDIA_FOLDER = 'ROOT_MEDIA_FOLDER'
@@ -6,11 +8,9 @@ CONFIG = {
     BASE_DAVINCI_PATH : "C:\\Users\\fluuc\\AppData\\Roaming\\Blackmagic Design\\DaVinci Resolve\\Support\\Fusion\\Scripts\\Comp\\",
 
     # UPDATE PER MATCH #
-    GAME_TYPE : 'Standard',
+    GAME_TYPE : GameTypes.STANDARD,
     ROOT_MEDIA_FOLDER : "C:\\Users\\fluuc\\Videos\\2023-01-02-Doubles"
 }
-
-GAME_TYPES = ("Standard", "Tiebreak")
 
 BASE_SCOREBOARD = CONFIG[BASE_DAVINCI_PATH] + "ScoreBoard.jpg"
 DRAFT           = CONFIG[BASE_DAVINCI_PATH] + "fonts\\drafting-mono\\DraftingMono-SemiBold.ttf"
