@@ -5,11 +5,11 @@ GAME_TYPE = 'GAME_TYPE'
 ROOT_MEDIA_FOLDER = 'ROOT_MEDIA_FOLDER'
 
 CONFIG = {
-    BASE_DAVINCI_PATH : "C:\\Users\\fluuc\\AppData\\Roaming\\Blackmagic Design\\DaVinci Resolve\\Support\\Fusion\\Scripts\\Comp\\",
+    BASE_DAVINCI_PATH : "C:\\Users\\PC\\AppData\\Roaming\\Blackmagic Design\\DaVinci Resolve\\Support\\Fusion\\Scripts\\Comp\\",
 
     # UPDATE PER MATCH #
     GAME_TYPE : GameTypes.STANDARD,
-    ROOT_MEDIA_FOLDER : "C:\\Users\\fluuc\\Videos\\2023-01-02-Doubles"
+    ROOT_MEDIA_FOLDER : "D:\\Felix\\GoProYoutubeProjects\\Felix"
 }
 
 BASE_SCOREBOARD = CONFIG[BASE_DAVINCI_PATH] + "ScoreBoard.jpg"
