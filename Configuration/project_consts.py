@@ -8,7 +8,7 @@ CONFIG = {
     BASE_DAVINCI_PATH : "C:\\Users\\PC\\AppData\\Roaming\\Blackmagic Design\\DaVinci Resolve\\Support\\Fusion\\Scripts\\Comp\\",
 
     # UPDATE PER MATCH #
-    GAME_TYPE : GameTypes.STANDARD,
+    GAME_TYPE : GameTypes.TIEBREAK_7,
     ROOT_MEDIA_FOLDER : "D:\\Felix\\GoProYoutubeProjects\\Felix"
 }
 
@@ -24,8 +24,8 @@ PLAYER2 = 'Player2'
 
 # UPDATE PER MATCH #
 PLAYERS = {
-    PLAYER1: 'KP ',
-    PLAYER2: 'KH '
+    PLAYER1: 'Felix ',
+    PLAYER2: 'Bruce '
 }
 # -- UPDATE PER MATCH --#
 
