@@ -8,26 +8,33 @@ This project takes a Timeline with markers to indicate when points start and who
 - Creates a new timeline with subclips of points marked
 - Update the Timecode of Scoreboard images to start at corresponding points
 
+## Setup
+Requires Python 3.6 or greater
+
+Python modules to install
+- pip install Pillow
+- pip install Timecode
+
+Clone the repository into the following location and DaVinci Resolve will see the scripts
+- %APPDATA%\Blackmagic Design\DaVinci Resolve\Support\Fusion\Scripts\Comp
+
+
 ## How to Use the program
 ### In DaVinci Resolve
 Mark the clip itself **not the Timeline**  for start/end points
- - Blue - Start of point (You can place consecutive Blue markers for faults, lets, etc... Program will pair up the closest Blue/{Cyan|Green} marker)
- - Cyan - End of point for player/team 1
- - Green - End of point for player/team 2
+ - Blue (m) - Start of point (You can place consecutive Blue markers for faults, lets, etc... Program will pair up the closest Blue/{Cyan|Green} marker)
+ - Cyan (1) - End of point for player/team 1
+ - Green (2) - End of point for player/team 2
 
  **NOTE** Marker colors are selected in DaVinci Resolve. You can set shortcut keys for each color
 
 After markers are inserted, in the menu bar select: Workspace -> Scripts -> Comp -> main
 
- You will see a new Timeline "Processed Clips" and JPEGs corresponding to the points. After all the Start TC updates complete on each JPEG, select all the scoreboard images in the Media Pool, Right Click, Select "Insert Selected Clips to Timeline using Timecode"
+ You will see a new Timeline "Processed Clips" and JPEGs corresponding to the points. 
+ Create a new Video Track to add Scoreboard 
+ After all the Start TC updates complete on each JPEG, select all the scoreboard images in the Media Pool, Right Click, Select "Insert Selected Clips to Timeline using Timecode"
 
 There is a second process to change the size/opacity of the scoreboard
 In the menu bar select: Workspace -> Scripts -> Comp -> main_adjust_scoreboard 
 
 Stil have to manually position the scoreboard in the desired position. You can select ALL the clips in the timeline and move all scoreboards at one time
-
-### Setup
-Requires Python 3.6 or greater
-
-Clone the repository into the following location and DaVinci Resolve will see the scripts
-- %APPDATA%\Blackmagic Design\DaVinci Resolve\Support\Fusion\Scripts\Comp
