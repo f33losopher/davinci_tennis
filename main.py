@@ -48,11 +48,9 @@ while i < len(tl_clip_list):
     frame_start = tl_clip_list[i].GetStart()
     media_item = jpeg_dict[filename]
     # Timecode initialize at 60fps and a start frame
-    tc = Timecode('30', "00:00:00:00")
+    tc = Timecode(FRAMERATE, "00:00:00:00")
     tc += frame_start
     media_item.SetClipProperty("Start TC", str(tc))
     print(f"Set {filename} to start at " + str(tc))
 
     i += 1
-
-
