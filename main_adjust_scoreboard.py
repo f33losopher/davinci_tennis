@@ -18,4 +18,4 @@ for sb in sb_item_list:
     sb.SetProperty('ZoomX', 0.40)
     sb.SetProperty('ZoomY', 0.40)
     sb.SetProperty('AnchorPointX', -950)
-    sb.SetProperty('AnchorPointY', 540)
+    sb.SetProperty('AnchorPointY', 780)
